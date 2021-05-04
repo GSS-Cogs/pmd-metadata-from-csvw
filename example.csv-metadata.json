@@ -1,0 +1,187 @@
+{
+    "@context": [
+        "http://www.w3.org/ns/csvw",
+        {
+            "@language": "en"
+        }
+    ],
+    "tables": [
+        {
+            "@id": "http://gss-data.org.uk/data/example#datacube",
+            "url": "example.csv",
+            "rdf:type": [
+                {
+                    "@id": "dcat:Dataset"
+                },
+                {
+                    "@id": "qb:DataSet"
+                }
+            ],
+            "qb:structure": {
+                "@id": "http://gss-data.org.uk/data/example#structure",
+                "@type": "qb:DataStructureDefinition",
+                "qb:component": [
+                    {
+                        "@id": "http://gss-data.org.uk/data/example#component/life-expectancy",
+                        "qb:measure": {
+                            "@id": "http://gss-data.org.uk/data/example#measure/life-expectancy",
+                            "@type": "qb:MeasureProperty",
+                            "rdfs:label": "Life Expectancy",
+                            "rdfs:comment": "Life Expectancy"
+                        },
+                        "@type": "qb:ComponentSpecification",
+                        "qb:componentProperty": {
+                            "@id": "http://gss-data.org.uk/data/example#measure/life-expectancy"
+                        }
+                    },
+                    {
+                        "@id": "http://gss-data.org.uk/data/example#component/region",
+                        "qb:dimension": {
+                            "@id": "http://gss-data.org.uk/data/example#dimension/region",
+                            "@type": "qb:DimensionProperty",
+                            "qb:codeList": {
+                                "@id": "http://gss-data.org.uk/data/example#codelist/region",
+                                "@type": "skos:ConceptScheme"
+                            },
+                            "rdfs:range": {
+                                "@id": "skos:Concept"
+                            },
+                            "rdfs:label": "Region",
+                            "rdfs:comment": "Region"
+                        },
+                        "@type": "qb:ComponentSpecification",
+                        "qb:componentProperty": {
+                            "@id": "http://gss-data.org.uk/data/example#dimension/region"
+                        }
+                    },
+                    {
+                        "@id": "http://gss-data.org.uk/data/example#component/sex",
+                        "qb:dimension": {
+                            "@id": "http://gss-data.org.uk/data/example#dimension/sex",
+                            "@type": "qb:DimensionProperty",
+                            "qb:codeList": {
+                                "@id": "http://gss-data.org.uk/data/example#codelist/sex",
+                                "@type": "skos:ConceptScheme"
+                            },
+                            "rdfs:range": {
+                                "@id": "skos:Concept"
+                            },
+                            "rdfs:label": "Sex",
+                            "rdfs:comment": "Sex"
+                        },
+                        "@type": "qb:ComponentSpecification",
+                        "qb:componentProperty": {
+                            "@id": "http://gss-data.org.uk/data/example#dimension/sex"
+                        }
+                    },
+                    {
+                        "@id": "http://gss-data.org.uk/data/example#component/period",
+                        "qb:dimension": {
+                            "@id": "http://gss-data.org.uk/data/example#dimension/period",
+                            "@type": "qb:DimensionProperty",
+                            "qb:codeList": {
+                                "@id": "http://gss-data.org.uk/data/example#codelist/period",
+                                "@type": "skos:ConceptScheme"
+                            },
+                            "rdfs:range": {
+                                "@id": "skos:Concept"
+                            },
+                            "rdfs:label": "Period",
+                            "rdfs:comment": "Period"
+                        },
+                        "@type": "qb:ComponentSpecification",
+                        "qb:componentProperty": {
+                            "@id": "http://gss-data.org.uk/data/example#dimension/period"
+                        }
+                    }
+                ]
+            },
+            "tableSchema": {
+                "columns": [
+                    {
+                        "name": "life_expectancy",
+                        "titles": [
+                            "Life Expectancy"
+                        ],
+                        "datatype": "decimal",
+                        "propertyUrl": "http://gss-data.org.uk/data/example#measure/life-expectancy"
+                    },
+                    {
+                        "name": "region",
+                        "titles": [
+                            "Region"
+                        ],
+                        "datatype": "string",
+                        "propertyUrl": "http://gss-data.org.uk/data/example#dimension/region",
+                        "valueUrl": "http://gss-data.org.uk/data/example#concept/region/{region}"
+                    },
+                    {
+                        "name": "sex",
+                        "titles": [
+                            "Sex"
+                        ],
+                        "datatype": "string",
+                        "propertyUrl": "http://gss-data.org.uk/data/example#dimension/sex",
+                        "valueUrl": "http://gss-data.org.uk/data/example#concept/sex/{sex}"
+                    },
+                    {
+                        "name": "period",
+                        "titles": [
+                            "Period"
+                        ],
+                        "datatype": "string",
+                        "propertyUrl": "http://gss-data.org.uk/data/example#dimension/period",
+                        "valueUrl": "http://gss-data.org.uk/data/example#concept/period/{period}"
+                    },
+                    {
+                        "name": "dataset",
+                        "virtual": true,
+                        "propertyUrl": "http://purl.org/linked-data/cube#dataSet",
+                        "valueUrl": "http://gss-data.org.uk/data/example#datacube"
+                    },
+                    {
+                        "name": "type",
+                        "virtual": true,
+                        "propertyUrl": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+                        "valueUrl": "http://purl.org/linked-data/cube#Observation"
+                    }
+                ],
+                "primaryKeys": [
+                    "region",
+                    "sex",
+                    "period"
+                ],
+                "aboutUrl": "http://gss-data.org.uk/data/example#datacube/{region}/{sex}/{period}"
+            },
+            "dcterms:title": "An example title",
+            "rdfs:comment": "An example description.",
+            "dcterms:publisher": {
+                "@id": "https://www.ons.gov.uk/"
+            },
+            "dcat:contactPoint": [
+                {
+                    "@id": "http://gss-data.org.uk/data/example#contact",
+                    "@type": "http://www.w3.org/2006/vcard/ns#Individual",
+                    "vcard:fn": "Ross Bowen",
+                    "vcard:email": {
+                        "@id": "mailto:example@ons.gov.uk"
+                    },
+                    "vcard:tel": "01234 678910"
+                }
+            ],
+            "dcterms:issued": {
+                "@value": "2021-01-01",
+                "@type": "xsd:date"
+            },
+            "dcat:theme": [
+                {
+                    "@id": "https://uksa.statisticsauthority.gov.uk/themes/health-social-care"
+                }
+            ],
+            "dcat:keyword": "Hello",
+            "dcat:landingPage": {
+                "@id": "http://example.org/landing-page"
+            }
+        }
+    ]
+}
